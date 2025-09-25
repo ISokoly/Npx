@@ -1,0 +1,9 @@
+{
+  "name": "rxjs-reactividad-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/rxjs-reactividad-e2e/src",
+  "implicitDependencies": ["rxjs-reactividad"],
+  "// targets": "to see all targets run: nx show project rxjs-reactividad-e2e --web",
+  "targets": {}
+}
