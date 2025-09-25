@@ -1,13 +1,31 @@
-import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  imports: [RouterModule],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class App {
-  protected title = 'rxjs-reactividad';
+  contador = 0;
+
+  readonly changeDetection = inject(ChangeDetectorRef)
+
+  metodoCambiar() {
+
+  }
+
+  mensaje(){
+    console.log("Hola")
+    return 45;
+  }
+  
+  constructor() {
+    setInterval(() => {
+      this.contador++
+      console.log(this.contador);
+    }, 1000);
+  }
 }

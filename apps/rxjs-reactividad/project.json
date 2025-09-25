@@ -12,7 +12,6 @@
       "options": {
         "outputPath": "dist/apps/rxjs-reactividad",
         "browser": "apps/rxjs-reactividad/src/main.ts",
-        "polyfills": ["zone.js"],
         "tsConfig": "apps/rxjs-reactividad/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
