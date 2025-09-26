@@ -1,6 +1,6 @@
 import { RouterModule } from '@angular/router';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject } from '@angular/core';
-import { interval } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, signal } from '@angular/core';
+import { interval, Observable, Observer } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,17 +10,29 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
+
 export class App {
-  readonly contador$ = interval(1000);
+  readonly contador$ = interval(2000);
 
-  //readonly changeDetection = inject(ChangeDetectorRef)
+  hola: string = "Hola";
+  readonly HOLA = signal(10);
 
-  metodoCambiar() {
-    console.log("Cambiando")
-    return 55
+  readonly observer: Observer<any> = {
+    next: value => console.log('Siguiente ', value),
+    error: value => console.log("Error", value),
+    complete: () => console.log("Observable completado")
   }
 
-  //mensaje() {console.log("Hola")return 45;}
+  readonly obs$ = new Observable<string>(subs => {
+    subs.next("Hola");
+    subs.next("Mundo");
+    subs.next("Hola");
+    subs.next("Mundo");
 
-  //constructor() { setInterval(() => { this.contador++ console.log(this.contador);}, 1000);}
+    subs.complete();
+
+    subs.next("Hola");
+    subs.next("Mundo");
+  })
+
 }
