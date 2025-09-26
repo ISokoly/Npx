@@ -12,27 +12,21 @@ import { CommonModule } from '@angular/common';
 })
 
 export class App {
-  readonly contador$ = interval(2000);
+  contador$ = new Observable<number>(subscriber => {
+    let cont = 0;
 
-  hola: string = "Hola";
-  readonly HOLA = signal(10);
-
-  readonly observer: Observer<any> = {
-    next: value => console.log('Siguiente ', value),
-    error: value => console.log("Error", value),
-    complete: () => console.log("Observable completado")
+    const contar = setInterval(() => {
+      cont++;
+      subscriber.next(cont)
+      console.log(cont)
+    }, 1000);
+    setTimeout(() => {
+      subscriber.complete()
+    }, 3000);
+    return () => {
+      clearInterval(contar);
+      console.log("Intervalo eliminado")
+    }
   }
-
-  readonly obs$ = new Observable<string>(subs => {
-    subs.next("Hola");
-    subs.next("Mundo");
-    subs.next("Hola");
-    subs.next("Mundo");
-
-    subs.complete();
-
-    subs.next("Hola");
-    subs.next("Mundo");
-  })
-
+  )
 }
