@@ -1,6 +1,6 @@
 <h1>Hola hola</h1>
 
-<h1>Contador: {{this.contador}}</h1>
-<h2>Mensaje: {{mensaje()}}</h2>
-<button (click)="metodoCambiar()" (mousemove)="mensaje()">Cambiar</button>
+<h1>Contador: {{contador$ | async}}</h1>
+<h2>Mensaje: {{metodoCambiar()}}</h2>
+<button (click)="metodoCambiar()">Cambiar</button>
 <router-outlet></router-outlet>
